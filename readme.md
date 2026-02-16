@@ -30,4 +30,4 @@ graph TD
         VM2 -.->|UDR: Next Hop FW| FW
     end
 ``` 
-![Arquitectura Hub-and-Spoke](./img/diagrama-arquitectura.png)
+![Arquitectura Hub-and-Spoke](./img2/diagrama-arquitectura.png)
