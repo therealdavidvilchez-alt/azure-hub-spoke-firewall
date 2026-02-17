@@ -175,3 +175,21 @@ resource "azurerm_firewall_policy_rule_collection_group" "network_rules" {
 }
 
 # ------------------------------------------------------------------------------------------------
+#Rutas
+resource "azurerm_route_table" "rt_spoke_a" {
+  name                = "rt-spoke-a"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  route {
+    name                   = "to-spoke-b-via-fw"
+    address_prefix         = "10.2.0.0/16" # Destino: Spoke B
+    next_hop_type          = "VirtualAppliance"
+    next_hop_in_ip_address = "10.0.1.4"
+  }
+}
+
+resource "azurerm_subnet_route_table_association" "example" {
+  subnet_id      = azurerm_subnet.snet_workload.id
+  route_table_id = azurerm_route_table.rt_spoke_a.id
+}
