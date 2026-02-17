@@ -189,7 +189,26 @@ resource "azurerm_route_table" "rt_spoke_a" {
   }
 }
 
-resource "azurerm_subnet_route_table_association" "example" {
+resource "azurerm_subnet_route_table_association" "assoc_spoke_a" {
   subnet_id      = azurerm_subnet.snet_workload.id
   route_table_id = azurerm_route_table.rt_spoke_a.id
 }
+
+resource "azurerm_route_table" "rt_spoke_b" {
+  name                = "rt-spoke-b"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  route {
+    name                   = "to-spoke-a-via-fw"
+    address_prefix         = "10.1.0.0/16" # Destino: Spoke A
+    next_hop_type          = "VirtualAppliance"
+    next_hop_in_ip_address = "10.0.1.4"
+  }
+}
+
+resource "azurerm_subnet_route_table_association" "assoc_spoke_b" {
+  subnet_id      = azurerm_subnet.snet_db.id
+  route_table_id = azurerm_route_table.rt_spoke_b.id
+}
+
