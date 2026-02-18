@@ -50,3 +50,12 @@ Todo el tráfico entre el **Spoke A** y el **Spoke B** es forzado hacia la IP pr
 1. El tráfico sale de la VM en Spoke A.
 2. La **UDR** intercepta el paquete y lo envía al Firewall en el Hub.
 3. El Firewall aplica las **Network Rules** y, si es autorizado, lo encamina al Spoke B.
+
+## 🚀 Resumen del Proyecto
+Infraestructura de red de alta seguridad en Azure configurada íntegramente como Código (IaC).
+
+### Capacidades Implementadas:
+* **Segmentación L3/L4:** Control de tráfico mediante Azure Firewall Policy.
+* **Enrutamiento Forzado (Next-Hop):** Tablas de rutas (UDR) que garantizan que ningún paquete entre Spokes evite la inspección.
+* **Topología Hub-and-Spoke:** Aislamiento total de la capa de datos (Spoke B) respecto a la capa de cómputo (Spoke A).
+* **Gestión Segura:** Subredes dedicadas para Azure Bastion y Gateway.
