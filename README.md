@@ -3,7 +3,7 @@
 
 ## Descripción
 Este proyecto despliega una topología de red Hub-and-Spoke segura en Microsoft Azure. 
-Está diseñado como parte de mi preparación para la certificación **AZ-104**.
+
 
 ## Objetivos Técnicos
 * Implementar una **VNet Hub** centralizada con **Azure Firewall**.
